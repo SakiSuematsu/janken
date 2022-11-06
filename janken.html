@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+  <title>じゃんけん</title>
+</head>
+
+<body>
+  <header>
+    <h1>じゃんけん</h1>
+  </header>
+
+  <main>
+    <div class="wrapper">
+      <ul>
+        <li id="gu_btn" onclick="play_pon()"><img id="gu_img" src="img/1501948.jpg" alt="ぐー" onclick="play_pon()"></a>
+        </li>
+        <li id="cho_btn"><img id="cho_img" src="img/1501947.jpg" alt="ちょき" onclick="play()"></a></li>
+        <li id="par_btn"><img id="par_img" src="img/1501946.jpg" alt="ぱー" onclick="play()"></a></li>
+        <li id="result"></li>
+        <li id="com_hand"></li>
+      </ul>
+      <audio id="play_pon" src="audio/audio_15563_sample.m4a" preload="metadata" none></audio>
+      <audio id="play_jan" src="audio/audio_16384_sample.m4a" preload="metadata" none></audio>
+    </div>
+    <div class="btn_wrapper">
+      <button id="again">もう一回じゃんけん！</button>
+    </div>
+    <div id="game_select">
+      <!-- <p id="game">ゲーム選択画面</p> -->
+      <ul>
+        <li id="game">
+          <button onclick="location.href='marubatu/index.html'">○×ゲーム</button>
+        </li>
+        <li id="game">
+          <button onclick="location.href='tetoris/index.html'">テトリス</button>
+        </li>
+        <li id="game">
+          <button onclick="">ぷよぷよ</button>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- <footer>フッター</footer> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    //ここに処理を追加
+    const audio_p = document.getElementById("pon");
+    function play() {
+      audio_p.play_pon();
+    }
+    //グーの処理
+    $('#gu_btn').on('click', function () {
+      const min = 0;
+      const max = 2;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log(randomNumber);
+
+
+
+      //もう一回じゃんけんのボタン
+      const btn = document.getElementById("again");
+      btn.addEventListener("click", function () {
+        window.location.reload();
+      });
+      //選んでいない手を非表示
+      $('#cho_btn').css("display", "none");
+      $('#par_btn').css("display", "none");
+      //非表示になっている項目を表示
+      $('#result').css("display", "block");
+      $('#com_hand').css("display", "block");
+      $('#again').css("display", "block");
+
+
+
+      if (randomNumber === 0) {
+
+        $('#com_hand').html('<img src="img/1501948.jpg" alt="ぐー">');
+        $('#result').text('あいこ');
+
+        //console.log(randomNumber);
+      } else if (randomNumber === 1) {
+        $('#com_hand').html('<img src="img/1501947.jpg" alt="ちょき">');
+        $('#result').text('勝ち');
+        // $('#game').text('ゲームで遊べるよ！'); 
+        $('#game_select').css("visibility", "visible");
+        //console.log(randomNumber);
+      } else {
+        $('#com_hand').html('<img src="img/1501946.jpg" alt="ぱー">');
+        $('#result').text('負け');
+
+        //console.log(randomNumber);
+      }
+    }
+    )
+    //チョキの処理
+    $('#cho_btn').on('click', function () {
+      const min = 0;
+      const max = 2;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log(randomNumber);
+
+      //もう一回じゃんけんのボタン
+      const btn = document.getElementById("again");
+      btn.addEventListener("click", function () {
+        window.location.reload();
+      });
+      //選んでいない手を非表示
+      $('#gu_btn').css("display", "none");
+      $('#par_btn').css("display", "none");
+      //非表示になっている項目を表示
+      $('#result').css("display", "block");
+      $('#com_hand').css("display", "block");
+      $('#again').css("display", "block");
+
+      if (randomNumber === 0) {
+        $('#com_hand').html('<img src="img/1501948.jpg" alt="ぐー">');
+        $('#result').text('負け');
+      } else if (randomNumber === 1) {
+        $('#com_hand').html('<img src="img/1501947.jpg" alt="ちょき">');
+        $('#result').text('あいこ');
+      } else {
+        $('#com_hand').html('<img src="img/1501946.jpg" alt="ぱー">');
+        $('#result').text('勝ち');
+        $('#game_select').css("visibility", "visible");
+      }
+    }
+    )
+    //パーの処理
+    $('#par_btn').on('click', function () {
+      const min = 0;
+      const max = 2;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log(randomNumber);
+
+      //もう一回じゃんけんのボタン
+      const btn = document.getElementById("again");
+      btn.addEventListener("click", function () {
+        window.location.reload();
+      });
+      //選んでいない手を非表示
+      $('#cho_btn').css("display", "none");
+      $('#gu_btn').css("display", "none");
+      //非表示になっている項目を表示
+      $('#result').css("display", "block");
+      $('#com_hand').css("display", "block");
+      $('#again').css("display", "block");
+
+      if (randomNumber === 0) {
+        $('#com_hand').html('<img src="img/1501948.jpg" alt="ぐー">');
+        $('#result').text('勝ち');
+        $('#game_select').css("visibility", "visible");
+      } else if (randomNumber === 1) {
+        $('#com_hand').html('<img src="img/1501947.jpg" alt="ちょき">');
+        $('#result').text('負け');
+      } else {
+        $('#com_hand').html('<img src="img/1501946.jpg" alt="ぱー">');
+        $('#result').text('あいこ');
+      }
+    }
+    )
+  </script>
+
+</body>
+
+</html>
