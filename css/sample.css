@@ -84,3 +84,16 @@ li:hover {
 #again {
     display: none;
 }
+
+/* mute切り替え用スタイル */
+.mute_btn {
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 80%;
+}

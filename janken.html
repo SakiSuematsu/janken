@@ -16,15 +16,19 @@
   <main>
     <div class="wrapper">
       <ul>
-        <li id="gu_btn" onclick="play_pon()"><img id="gu_img" src="img/1501948.jpg" alt="ぐー" onclick="play_pon()"></a>
+        <li id="gu_btn"><img id="gu_img" src="img/1501948.jpg" alt="ぐー" onclick="audio()"></a>
         </li>
-        <li id="cho_btn"><img id="cho_img" src="img/1501947.jpg" alt="ちょき" onclick="play()"></a></li>
-        <li id="par_btn"><img id="par_img" src="img/1501946.jpg" alt="ぱー" onclick="play()"></a></li>
+        <li id="cho_btn"><img id="cho_img" src="img/1501947.jpg" alt="ちょき" onclick="audio()"></a></li>
+        <li id="par_btn"><img id="par_img" src="img/1501946.jpg" alt="ぱー" onclick="audio()"></a></li>
         <li id="result"></li>
         <li id="com_hand"></li>
       </ul>
-      <audio id="play_pon" src="audio/audio_15563_sample.m4a" preload="metadata" none></audio>
-      <audio id="play_jan" src="audio/audio_16384_sample.m4a" preload="metadata" none></audio>
+      <audio id="play_pon">
+        <source src="./audio/audio_15563_sample.m4a.mp4" type="audio/mp4">
+      </audio>
+      <audio id="play_jan">
+        <source src="./audio/audio_16384_sample.m4a.mp4" type="audio/mp4">
+      </audio>
     </div>
     <div class="btn_wrapper">
       <button id="again">もう一回じゃんけん！</button>
@@ -43,25 +47,46 @@
         </li>
       </ul>
     </div>
+    <!-- mute切り替えボタン追加 -->
+    <div class="mute_btn" onClick="mute()">muteの切り替え</div>
+
   </main>
 
   <!-- <footer>フッター</footer> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    //ここに処理を追加
-    const audio_p = document.getElementById("pon");
-    function play() {
-      audio_p.play_pon();
+
+    // muteの切り替え
+    function mute() {
+      if (document.getElementById("play_jan").muted) {
+        document.getElementById("play_jan").muted = false;
+        document.getElementById("play_pon").muted = false;
+      } else {
+        document.getElementById("play_jan").muted = true;
+        document.getElementById("play_pon").muted = true;
+      }
     }
+    //音を鳴らす処理:hoverしたら「じゃんけん」
+    $(function () {
+      $('#gu_btn,#cho_btn,#par_btn').mouseover(function () {
+        document.getElementById("play_jan").currentTime = 0; //連続クリックに対応
+        document.getElementById("play_jan").play(); //ホバーしたら音を再生
+      });
+    });
+    //音を鳴らす処理:clickしたら「ぽん」
+    function audio() {
+      document.getElementById("play_pon").currentTime = 0; //連続クリックに対応
+      document.getElementById("play_pon").play(); //クリックしたら音を再生
+    };
+
+
     //グーの処理
     $('#gu_btn').on('click', function () {
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       console.log(randomNumber);
-
-
 
       //もう一回じゃんけんのボタン
       const btn = document.getElementById("again");
