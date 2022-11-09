@@ -60,11 +60,33 @@ li {
 }
 
 img {
-    width: 30%;
+    width: 180px;
+    height: 180px;
 }
 
-li:hover {
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.janken-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 50px 0 0;
+    width: 960px;
+}
+
+.janken-wrapper>input:hover {
     transform: scale(1.2, 1.2);
+}
+
+.janken-wrapper>a {
+    width: auto;
+    height: 180px;
+    line-height: 180px;
 }
 
 #com_hand {
@@ -96,4 +118,17 @@ li:hover {
     justify-content: center;
     height: 45px;
     width: 80%;
+}
+
+/* 結果画面のhoverを消す*/
+#gu_btn[disabled] {
+    pointer-events: none;
+}
+
+#cho_btn[disabled] {
+    pointer-events: none;
+}
+
+#par_btn[disabled] {
+    pointer-events: none;
 }

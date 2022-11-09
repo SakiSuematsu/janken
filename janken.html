@@ -15,7 +15,7 @@
 
   <main>
     <div class="wrapper">
-      <ul>
+      <!--     <ul>
         <li id="gu_btn"><img id="gu_img" src="img/1501948.jpg" alt="ぐー" onclick="audio()"></a>
         </li>
         <li id="cho_btn"><img id="cho_img" src="img/1501947.jpg" alt="ちょき" onclick="audio()"></a></li>
@@ -23,6 +23,14 @@
         <li id="result"></li>
         <li id="com_hand"></li>
       </ul>
+      -->
+      <div class="janken-wrapper">
+        <input type="image" id="gu_btn" src="img/1501948.jpg" width="180" height="180" alt="ぐー" onclick="audio()">
+        <input type="image" id="cho_btn" src="img/1501947.jpg" width="180" height="180" alt="ちょき" onclick="audio()">
+        <input type="image" id="par_btn" src="img/1501946.jpg" width="180" height="180" alt="ぱー" onclick="audio()">
+        <a id="result"></a>
+        <a id="com_hand"></a>
+      </div>
       <audio id="play_pon">
         <source src="./audio/audio_15563_sample.m4a.mp4" type="audio/mp4">
       </audio>
@@ -101,13 +109,9 @@
       $('#com_hand').css("display", "block");
       $('#again').css("display", "block");
 
-
-
       if (randomNumber === 0) {
-
         $('#com_hand').html('<img src="img/1501948.jpg" alt="ぐー">');
         $('#result').text('あいこ');
-
         //console.log(randomNumber);
       } else if (randomNumber === 1) {
         $('#com_hand').html('<img src="img/1501947.jpg" alt="ちょき">');
@@ -121,6 +125,12 @@
 
         //console.log(randomNumber);
       }
+      //2度押し制御
+      //const result = $('#gu_btn').prop('disabled');
+      //console.log(result);
+      $('#gu_btn').prop('disabled', true);
+      //const result2 = $('#gu_btn').prop('disabled');
+      //console.log(result2);
     }
     )
     //チョキの処理
@@ -154,6 +164,8 @@
         $('#result').text('勝ち');
         $('#game_select').css("visibility", "visible");
       }
+      //2度押し制御
+      $('#cho_btn').prop('disabled', true);
     }
     )
     //パーの処理
@@ -187,6 +199,9 @@
         $('#com_hand').html('<img src="img/1501946.jpg" alt="ぱー">');
         $('#result').text('あいこ');
       }
+
+      //2度押し制御
+      $('#par_btn').prop('disabled', true);
     }
     )
   </script>
