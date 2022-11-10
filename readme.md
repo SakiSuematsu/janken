@@ -28,11 +28,11 @@
   - じゃんけん改造のアイデア出し。何も思いつかず丸一日経ちました。。。  
   - じゃんけん結果の手と勝ち・負け・あいこの並びのバランス
   - じゃんけんの2度押し防止の実装のために、htmlとcssを書き換えることになって冷や汗かきました
-  - ひとつのmuteボタンで、「じゃんけん」「ぽん」の両方の音をミュートにするところ  
+  - ひとつのmutßeボタンで、「じゃんけん」「ぽん」の両方の音をミュートにするところ  
 
 ## 苦戦している点、積み残し
 
-  - ミニゲーム選択ボタンの体裁を整える  
+  - ミニゲーム選択ボタンで遊ぶ  
   - ミニゲームブロック崩しの実装（写経）  
  
   
@@ -43,7 +43,9 @@
   - 音声の変換 https://www.apowersoft.jp/free-online-video-converter
   - hoverの消し方 https://kouhekikyozou.com/css_hover_cancel
   - ボタンの2度押し防止 https://dainamo.jp/btn_disabled/
+
   ### 写経したミニゲーム
-  - マルバツゲーム　https://qiita.com/dai_designing/items/c37a6baeecf0216303ec
-  - テトリス　https://joytas.net/programming/tetris1
-  - ぷよぷよ　https://edu.monaca.io/puyo
+  - マルバツゲーム https://qiita.com/dai_designing/items/c37a6baeecf0216303ec
+  - テトリス https://joytas.net/programming/tetris1
+  - ぷよぷよ https://edu.monaca.io/puyo
+  - ブロック崩し https://developer.mozilla.org/ja/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
