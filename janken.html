@@ -11,37 +11,35 @@
 <body>
   <header>
     <h1>じゃんけん</h1>
+    <!-- mute切り替えボタン追加 -->
+    <div class="mute_btn" onClick="mute()">ミュートにする</div>
   </header>
 
   <main>
     <div class="wrapper">
-      <ul>
-        <li id="gu_btn" onclick="play_pon()"><img id="gu_img" src="img/1501948.jpg" alt="ぐー" onclick="play_pon()"></a>
-        </li>
-        <li id="cho_btn"><img id="cho_img" src="img/1501947.jpg" alt="ちょき" onclick="play()"></a></li>
-        <li id="par_btn"><img id="par_img" src="img/1501946.jpg" alt="ぱー" onclick="play()"></a></li>
-        <li id="result"></li>
-        <li id="com_hand"></li>
-      </ul>
-      <audio id="play_pon" src="audio/audio_15563_sample.m4a" preload="metadata" none></audio>
-      <audio id="play_jan" src="audio/audio_16384_sample.m4a" preload="metadata" none></audio>
+      <div class="janken-wrapper">
+        <input type="image" id="gu_btn" src="img/1501948.jpg" width="180" height="180" alt="ぐー" onclick="audio()">
+        <input type="image" id="cho_btn" src="img/1501947.jpg" width="180" height="180" alt="ちょき" onclick="audio()">
+        <input type="image" id="par_btn" src="img/1501946.jpg" width="180" height="180" alt="ぱー" onclick="audio()">
+        <a id="result"></a>
+        <a id="com_hand"></a>
+      </div>
+      <audio id="play_pon">
+        <source src="./audio/audio_15563_sample.m4a.mp4" type="audio/mp4">
+      </audio>
+      <audio id="play_jan">
+        <source src="./audio/audio_16384_sample.m4a.mp4" type="audio/mp4">
+      </audio>
     </div>
     <div class="btn_wrapper">
-      <button id="again">もう一回じゃんけん！</button>
+      <input type="button" id="again" value="もう一回じゃんけん！">
     </div>
-    <div id="game_select">
-      <!-- <p id="game">ゲーム選択画面</p> -->
-      <ul>
-        <li id="game">
-          <button onclick="location.href='marubatu/index.html'">○×ゲーム</button>
-        </li>
-        <li id="game">
-          <button onclick="location.href='tetoris/index.html'">テトリス</button>
-        </li>
-        <li id="game">
-          <button onclick="">ぷよぷよ</button>
-        </li>
-      </ul>
+    <div>
+      <p id="another_game">他のゲームで遊ぶ↓</p>
+      <div id="game_select">
+        <input type="button" id="game" onclick="location.href='marubatu/index.html'" value="○×ゲーム">
+        <input type="button" id="game" onclick="location.href='tetoris/index.html'" value="テトリス">
+      </div>
     </div>
   </main>
 
@@ -49,19 +47,43 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    //ここに処理を追加
-    const audio_p = document.getElementById("pon");
-    function play() {
-      audio_p.play_pon();
+
+    // muteの切り替え
+    function mute() {
+      if (document.getElementById("play_jan").muted) {
+        document.getElementById("play_jan").muted = false;
+        document.getElementById("play_pon").muted = false;
+        $('.mute_btn').css("background-color", "#ff0000");
+        $('.mute_btn').css("color", "#fff");
+        $('.mute_btn').text("ミュートにする");
+      } else {
+        document.getElementById("play_jan").muted = true;
+        document.getElementById("play_pon").muted = true;
+        $('.mute_btn').css("background-color", "#0000ff");
+        $('.mute_btn').css("color", "#fff");
+        $('.mute_btn').text("ミュート中");
+      }
     }
+    //音を鳴らす処理:hoverしたら「じゃんけん」
+    $(function () {
+      $('#gu_btn,#cho_btn,#par_btn').mouseover(function () {
+        document.getElementById("play_jan").currentTime = 0; //連続クリックに対応
+        document.getElementById("play_jan").play(); //ホバーしたら音を再生
+      });
+    });
+    //音を鳴らす処理:clickしたら「ぽん」
+    function audio() {
+      document.getElementById("play_pon").currentTime = 0; //連続クリックに対応
+      document.getElementById("play_pon").play(); //クリックしたら音を再生
+    };
+
+
     //グーの処理
     $('#gu_btn').on('click', function () {
       const min = 0;
       const max = 2;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       console.log(randomNumber);
-
-
 
       //もう一回じゃんけんのボタン
       const btn = document.getElementById("again");
@@ -76,18 +98,14 @@
       $('#com_hand').css("display", "block");
       $('#again').css("display", "block");
 
-
-
       if (randomNumber === 0) {
-
         $('#com_hand').html('<img src="img/1501948.jpg" alt="ぐー">');
         $('#result').text('あいこ');
-
         //console.log(randomNumber);
       } else if (randomNumber === 1) {
         $('#com_hand').html('<img src="img/1501947.jpg" alt="ちょき">');
         $('#result').text('勝ち');
-        // $('#game').text('ゲームで遊べるよ！'); 
+        $('#another_game').css("visibility", "visible");
         $('#game_select').css("visibility", "visible");
         //console.log(randomNumber);
       } else {
@@ -96,6 +114,12 @@
 
         //console.log(randomNumber);
       }
+      //2度押し制御
+      //const result = $('#gu_btn').prop('disabled');
+      //console.log(result);
+      $('#gu_btn').prop('disabled', true);
+      //const result2 = $('#gu_btn').prop('disabled');
+      //console.log(result2);
     }
     )
     //チョキの処理
@@ -127,8 +151,11 @@
       } else {
         $('#com_hand').html('<img src="img/1501946.jpg" alt="ぱー">');
         $('#result').text('勝ち');
+        $('#another_game').css("visibility", "visible");
         $('#game_select').css("visibility", "visible");
       }
+      //2度押し制御
+      $('#cho_btn').prop('disabled', true);
     }
     )
     //パーの処理
@@ -154,6 +181,7 @@
       if (randomNumber === 0) {
         $('#com_hand').html('<img src="img/1501948.jpg" alt="ぐー">');
         $('#result').text('勝ち');
+        $('#another_game').css("visibility", "visible");
         $('#game_select').css("visibility", "visible");
       } else if (randomNumber === 1) {
         $('#com_hand').html('<img src="img/1501947.jpg" alt="ちょき">');
@@ -162,6 +190,9 @@
         $('#com_hand').html('<img src="img/1501946.jpg" alt="ぱー">');
         $('#result').text('あいこ');
       }
+
+      //2度押し制御
+      $('#par_btn').prop('disabled', true);
     }
     )
   </script>

@@ -38,6 +38,7 @@ p {
 
 ul {
     padding: 0;
+    margin: 0;
     /*border-top: 1px solid #000000;*/
     /*display: table;*/
     /* 定義 */
@@ -57,22 +58,62 @@ li {
     display: table-cell;
     /* 定義 */
     cursor: pointer;
+    padding: 10px 0 0;
 }
 
 img {
-    width: 30%;
+    width: 180px;
+    height: 180px;
 }
 
-li:hover {
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.janken-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 50px 0 0;
+    width: 960px;
+}
+
+.janken-wrapper>input:hover {
     transform: scale(1.2, 1.2);
+}
+
+.janken-wrapper>a {
+    width: auto;
+    height: 180px;
+    line-height: 180px;
 }
 
 #com_hand {
     display: none;
 }
 
+#another_game {
+    visibility: hidden;
+}
+
 #game_select {
     visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game,
+#again {
+    width: 200px;
+    height: 45px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #000;
+    margin: 10px;
 }
 
 .btn_wrapper {
@@ -83,4 +124,30 @@ li:hover {
 
 #again {
     display: none;
+}
+
+/* mute切り替え用スタイル */
+.mute_btn {
+    box-sizing: border-box;
+    background-color: #ff0000;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: auto;
+}
+
+/* 結果画面のhoverを消す*/
+#gu_btn[disabled] {
+    pointer-events: none;
+}
+
+#cho_btn[disabled] {
+    pointer-events: none;
+}
+
+#par_btn[disabled] {
+    pointer-events: none;
 }
