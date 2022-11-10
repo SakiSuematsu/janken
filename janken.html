@@ -11,6 +11,8 @@
 <body>
   <header>
     <h1>じゃんけん</h1>
+    <!-- mute切り替えボタン追加 -->
+    <div class="mute_btn" onClick="mute()">ミュートにする</div>
   </header>
 
   <main>
@@ -51,12 +53,10 @@
           <button onclick="location.href='tetoris/index.html'">テトリス</button>
         </li>
         <li id="game">
-          <button onclick="">ぷよぷよ</button>
+          <button onclick="">ブロックくずし</button>
         </li>
       </ul>
     </div>
-    <!-- mute切り替えボタン追加 -->
-    <div class="mute_btn" onClick="mute()">muteの切り替え</div>
 
   </main>
 
@@ -70,9 +70,15 @@
       if (document.getElementById("play_jan").muted) {
         document.getElementById("play_jan").muted = false;
         document.getElementById("play_pon").muted = false;
+        $('.mute_btn').css("background-color", "#ff0000");
+        $('.mute_btn').css("color", "#fff");
+        $('.mute_btn').text("ミュートにする");
       } else {
         document.getElementById("play_jan").muted = true;
         document.getElementById("play_pon").muted = true;
+        $('.mute_btn').css("background-color", "#0000ff");
+        $('.mute_btn').css("color", "#fff");
+        $('.mute_btn').text("ミュート中");
       }
     }
     //音を鳴らす処理:hoverしたら「じゃんけん」
