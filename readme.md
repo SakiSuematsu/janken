@@ -2,7 +2,7 @@
 
 ## DEMO
 
-  - デプロイしている場合はURLを記入（任意）
+  - https://sakisuematsu.github.io/janken/
 
 ## 紹介と使い方
 
