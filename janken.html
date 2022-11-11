@@ -10,7 +10,7 @@
 
 <body>
   <header>
-    <h1>じゃんけん</h1>
+    <h1 id="header_janken">じゃんけん</h1>
     <!-- mute切り替えボタン追加 -->
     <div class="mute_btn" onClick="mute()">ミュートにする</div>
   </header>
@@ -76,6 +76,22 @@
       document.getElementById("play_pon").currentTime = 0; //連続クリックに対応
       document.getElementById("play_pon").play(); //クリックしたら音を再生
     };
+
+    //ランダムカラーの関数
+    function ColorCode() {
+      const makingColorCode = '0123456789ABCDEF';
+      let finalCode = '#';
+      for (let counter = 0; counter < 6; counter++) {
+        finalCode = finalCode + makingColorCode[Math.floor(Math.random() * 16)];
+      }
+      return finalCode;
+    }
+    //じゃんけんにhoverしたらランダムで文字色が変わる
+    $(function () {
+      $('#header_janken').mouseover(function getRandomColor() {
+        $("#header_janken").css("color", ColorCode());
+      });
+    });
 
 
     //グーの処理
