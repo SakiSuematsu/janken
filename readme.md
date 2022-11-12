@@ -47,5 +47,4 @@
   ### 写経したミニゲーム
   - マルバツゲーム https://qiita.com/dai_designing/items/c37a6baeecf0216303ec
   - テトリス https://joytas.net/programming/tetris1
-  - ぷよぷよ https://edu.monaca.io/puyo
   - ブロック崩し https://developer.mozilla.org/ja/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript
